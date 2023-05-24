@@ -1,6 +1,5 @@
 import {
   Injectable,
-  ForbiddenException,
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
@@ -113,11 +112,11 @@ export class AuthService {
         HttpStatus.TOO_MANY_REQUESTS,
       );
     } else {
-      // create new token
+      // create/update new token
       const newToken = new Token();
       newToken.email = email;
       newToken.token = generateResetToken();
-      // await this.tokenService.update(newToken);
+      await this.tokenService.update(newToken);
       // send mail
       try {
         await this.mailService.sendResetMail(newToken.email, newToken.token);
@@ -141,7 +140,7 @@ export class AuthService {
     if (!userData) throw new NotFoundException('Email not registered.');
     // check token existence
     const tokenData = await this.tokenService.findByEmailToken(email, token);
-    if (!tokenData) throw new ForbiddenException('Invalid token.');
+    if (!tokenData) throw new NotFoundException('Invalid token.');
     // delete token
     await this.tokenService.delete(email);
     // update password
@@ -158,7 +157,7 @@ export class AuthService {
   async verifyEmail(token: string): Promise<string> {
     // check token existence
     const tokenData = await this.tokenService.findByToken(token);
-    if (!tokenData) throw new ForbiddenException('Invalid token.');
+    if (!tokenData) throw new NotFoundException('Invalid token.');
     // delete token
     await this.tokenService.delete(tokenData.email);
     // get user and verify
