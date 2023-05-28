@@ -1,5 +1,37 @@
 # Movie API
 
+- Movie Endpoint
+
+  - **GET** - `/movie/` get all the movie
+  - **GET** - `/movie/:id` gets movie by id
+
+- Favorite Endpoint (user auth required)
+
+  - **GET** - `/favorite/` get all the favorite
+  - **GET** - `/favorite/:id` get favorite by id
+  - **POST** - `/favorite/` add favorite
+    - id - _string_
+  - **DELETE** - `/favorite/:id` delete favorite by id
+
+- User Auth Endpoint
+  - **POST** - `/auth/signin` sign in
+    - email - _string_
+    - password - _string_
+  - **POST** - `/auth/signup` sign up
+    - email - _string_
+    - password - _string_
+    - firstName - _string_
+    - lastName - _string_
+  - **GET** - `/auth/verify/:token` email verification
+  - **GET** - `/auth/forgot-password/:email` get token for password reset
+  - **PUT** - `/reset-password/:token` reset password
+    - email - _string_
+    - password - _string_
+
+# Unit Testing Coverage
+
+Only Favorite and Movie endpoints were unit tested due to time constraint.
+
 # Tech Stack
 
 - NestJS (framework)
