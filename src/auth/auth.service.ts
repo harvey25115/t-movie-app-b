@@ -5,6 +5,7 @@ import {
   UnauthorizedException,
   HttpException,
   HttpStatus,
+  ConflictException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -67,6 +68,9 @@ export class AuthService {
    * @returns String
    */
   async signUp(user: User): Promise<any> {
+    // check user existence
+    const userData = await this.userService.findOne(user.email);
+    if (userData) throw new ConflictException('Email already registered.');
     // hash password
     user.password = await generateHashPassword(user.password);
     // insert user
@@ -83,6 +87,7 @@ export class AuthService {
         tokenObj.token,
       );
     } catch (error) {
+      console.error(error);
       throw new InternalServerErrorException('Mail server error');
     }
     return 'User registered. Verification email was sent successfully.';
@@ -118,6 +123,7 @@ export class AuthService {
       try {
         await this.mailService.sendResetMail(newToken.email, newToken.token);
       } catch (error) {
+        console.error(error);
         throw new InternalServerErrorException('Mail server error');
       }
       return 'Password reset mail was sent succesfully.';
