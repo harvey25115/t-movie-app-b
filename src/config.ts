@@ -1,26 +1,26 @@
 /**
  * Config files
  */
-export default {
+export const configuration = () => ({
   db: {
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'root',
-    database: 'moviedb',
+    host: process.env.DB_HOST,
+    port: +process.env.DB_PORT,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   },
   host: {
-    url: 'http://localhost',
-    port: '3000',
+    url: process.env.HOST_URL,
+    port: process.env.HOST_PORT,
   },
   jwt: {
-    secret: 'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCTNDtKuBmm3jWg',
-    expiresIn: '1200s',
+    secret: process.env.JWT_secret,
+    expiresIn: process.env.JWT_expiresIn,
   },
   mail: {
-    host: 'smtp.ethereal.email',
-    port: 587,
-    user: 'libbie65@ethereal.email',
-    pass: 'yHT7dDyFKmZxGBaN1P',
+    host: process.env.MAIL_HOST,
+    port: +process.env.MAIL_PORT,
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
   },
-};
+});

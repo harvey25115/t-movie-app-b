@@ -10,11 +10,11 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from '../user/user.service';
-import { TokenService } from 'src/token/token.service';
-import { MailService } from 'src/mail/mail.service';
+import { TokenService } from '../token/token.service';
+import { MailService } from '../mail/mail.service';
 
-import { User } from 'src/user/user.entity';
-import { Token } from 'src/token/token.entity';
+import { User } from '../user/user.entity';
+import { Token } from '../token/token.entity';
 
 @Injectable()
 export class AuthService {
@@ -99,10 +99,7 @@ export class AuthService {
     if (!user) throw new NotFoundException('Email not registered.');
     // check token existence
     const tokenData = await this.tokenService.findByEmail(email);
-    console.log(
-      tokenData,
-      (new Date().getTime() - tokenData.updatedDate.getTime()) / 60000 < 5,
-    );
+    // check if request was made within 5 mins from last request
     if (
       tokenData &&
       (new Date().getTime() - tokenData.updatedDate.getTime()) / 60000 < 5

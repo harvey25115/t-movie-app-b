@@ -10,7 +10,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { JwtAuthGuard } from 'src/auth/passport-strategy/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/passport-strategy/jwt-auth.guard';
 
 import { FavoriteService } from './favorite.service';
 import { CreateFavoriteDto } from './create-favorite.dto';

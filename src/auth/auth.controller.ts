@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
-import { UserDto } from 'src/auth/dto/user.dto';
-import { TokenDto } from 'src/auth/dto/token.dto';
+import { UserDto } from '../auth/dto/user.dto';
+import { TokenDto } from '../auth/dto/token.dto';
 
 import { LocalAuthGuard } from './passport-strategy/local-auth.guard';
 

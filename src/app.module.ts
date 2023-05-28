@@ -8,28 +8,32 @@ import { AppService } from './app.service';
 import { MovieModule } from './movie/movie.module';
 import { FavoriteModule } from './favorite/favorite.module';
 import { AuthModule } from './auth/auth.module';
-import config from './config';
+import { configuration } from './config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: `./env/${process.env.NODE_ENV || 'local'}.env`,
+      load: [configuration],
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: config.db.host,
-      port: config.db.port,
-      username: config.db.username,
-      password: config.db.password,
-      database: config.db.database,
+      host: configuration().db.host,
+      port: configuration().db.port,
+      username: configuration().db.username,
+      password: configuration().db.password,
+      database: configuration().db.database,
       autoLoadEntities: true,
       synchronize: true,
     }),
     MailerModule.forRoot({
       transport: {
-        host: config.mail.host,
-        port: config.mail.port,
+        host: configuration().mail.host,
+        port: configuration().mail.port,
         auth: {
-          user: config.mail.user,
-          pass: config.mail.pass,
+          user: configuration().mail.user,
+          pass: configuration().mail.pass,
         },
       },
     }),

@@ -7,8 +7,8 @@ import {
   Unique,
 } from 'typeorm';
 
-import { Movie } from 'src/movie/movie.entity';
-import { User } from 'src/user/user.entity';
+import { Movie } from '../movie/movie.entity';
+import { User } from '../user/user.entity';
 
 @Entity()
 @Unique(['movie', 'user'])

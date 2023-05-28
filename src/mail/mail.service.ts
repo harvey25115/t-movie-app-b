@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import config from '../config';
+import { configuration } from '../config';
 
 @Injectable()
 export class MailService {
@@ -14,9 +14,9 @@ export class MailService {
    */
   async sendResetMail(email: string, token: string) {
     const link =
-      config.host.url +
+      configuration().host.url +
       ':' +
-      config.host.port +
+      configuration().host.port +
       '/auth/reset-password/' +
       token;
 
@@ -41,7 +41,11 @@ export class MailService {
    */
   async sendVerificationMail(email: string, token: string) {
     const link =
-      config.host.url + ':' + config.host.port + '/auth/verify/' + token;
+      configuration().host.url +
+      ':' +
+      configuration().host.port +
+      '/auth/verify/' +
+      token;
 
     return this.mailerService.sendMail({
       to: email,
