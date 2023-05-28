@@ -1,11 +1,11 @@
 # Movie API
 
-- Movie Endpoint
+- **Movie Endpoint**
 
   - **GET** - `/movie/` get all the movie
   - **GET** - `/movie/:id` gets movie by id
 
-- Favorite Endpoint (user auth required)
+- **Favorite Endpoint (user auth required)**
 
   - **GET** - `/favorite/` get all the favorite
   - **GET** - `/favorite/:id` get favorite by id
@@ -13,7 +13,7 @@
     - **id** - _string_
   - **DELETE** - `/favorite/:id` delete favorite by id
 
-- User Auth Endpoint
+- **User Auth Endpoint**
   - **POST** - `/auth/signin` sign in
     - **email** - _string_
     - **password** - _string_
