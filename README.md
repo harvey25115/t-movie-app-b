@@ -46,7 +46,7 @@ Only Favorite and Movie endpoints were unit tested due to time constraint.
 
 - docker compose up -d
 - http://localhost:3000
-- _Containers: mysql and api_
+  _Containers: mysql and api_
 
 ## Installation
 
