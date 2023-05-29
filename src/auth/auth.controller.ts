@@ -47,4 +47,11 @@ export class AuthController {
   resetPassword(@Param('token') token: string, @Body() resetUserDto: UserDto) {
     return this.authService.resetPassword(resetUserDto, token);
   }
+
+  /** placeholder: this should be handled by client-side to show email, new password input element */
+  @Get('reset-password/:token')
+  navigateToResetPassword(@Param('token') token: string) {
+    console.log(token);
+    return 'Will redirect you to password reset page...';
+  }
 }

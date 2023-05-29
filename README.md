@@ -10,10 +10,10 @@
   - **GET** - `/favorite/` get all the favorite
   - **GET** - `/favorite/:id` get favorite by id
   - **POST** - `/favorite/` add favorite
-    - **id** - _string_
+    - **id** - _string_ id of the movie
   - **DELETE** - `/favorite/:id` delete favorite by id
 
-- **User Auth Endpoint**
+- **User Auth Endpoint (token expiration: 20mins)\*\***
   - **POST** - `/auth/signin` sign in
     - **email** - _string_
     - **password** - _string_
@@ -23,10 +23,10 @@
     - **firstName** - _string_
     - **lastName** - _string_
   - **GET** - `/auth/verify/:token` email verification
-  - **GET** - `/auth/forgot-password/:email` get token for password reset
+  - **GET** - `/auth/forgot-password/:email` get token for password reset (request limit: 1 request / 5 mins)
   - **PUT** - `/reset-password/:token` reset password
     - **email** - _string_
-    - **password** - _string_
+    - **password** - _string_ new password
 
 # Unit Testing Coverage
 

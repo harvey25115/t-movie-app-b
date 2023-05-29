@@ -26,7 +26,9 @@ export class MailService {
       subject: 'Movie App - Password Reset',
       text: 'Please click the link to reset password: ' + link,
       html:
-        'Click the link below to reset your password<br><br>' +
+        'Use this code to reset your password: ' +
+        token +
+        '<br><br>And Click the link below to reset your password<br><br>' +
         '<a href=' +
         link +
         '>Click here</a>',
