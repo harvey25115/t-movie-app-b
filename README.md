@@ -13,7 +13,7 @@
     - **id** - _string_ id of the movie
   - **DELETE** - `/favorite/:id` delete favorite by id
 
-- **User Auth Endpoint (token expiration: 20mins)\*\***
+- **User Auth Endpoint (token expiration: 20mins)**
   - **POST** - `/auth/signin` sign in
     - **email** - _string_
     - **password** - _string_
